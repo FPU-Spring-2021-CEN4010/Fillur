@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,7 +55,7 @@ public class FirebaseRecipeViewHolder extends RecyclerView.ViewHolder implements
                 .centerCrop()
                 .into(mRecipeImageView);
 
-        titleTextView.setText(recipe.getTitle());
+        titleTextView.setText(Html.fromHtml(recipe.getTitle()));
         publisherTextView.setText(recipe.getPublisher());
         rankTextView.setText("Rank: %" + recipe.getRank().substring(0,5));
     }
