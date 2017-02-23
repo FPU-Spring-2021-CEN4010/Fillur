@@ -3,6 +3,7 @@ package com.epicodus.guest.fillur.adapters;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,11 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     public int getItemCount() {
         return mIngredients.size();
     }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
 
 
     public class IngredientsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -67,8 +73,15 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         }
 
         public void bindIngredient(String ingredient) {
-            mIngredient.setText(ingredient);
+            mIngredient.setText(Html.fromHtml(ingredient));
+            if (IngredientListActivity.myIngredients.indexOf(mIngredient.getText().toString()) == -1) {
+                mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.primary_dark));
+            } else {
+                mIngredient.setTextColor(ContextCompat.getColor(mContext, R.color.accent));
+            }
         }
+
+
 
         @Override
         public void onClick(View view) {

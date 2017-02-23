@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         public void bindRecipe(Recipe recipe) {
             Picasso.with(mContext).load(recipe.getImageUrl()).into(mRecipeImageView);
-            mTitleTextView.setText(recipe.getTitle());
+            mTitleTextView.setText(Html.fromHtml(recipe.getTitle()));
             mPublisherTextView.setText(recipe.getPublisher());
             mRankTextView.setText("Rank: %" + recipe.getRank().substring(0,5));
         }
